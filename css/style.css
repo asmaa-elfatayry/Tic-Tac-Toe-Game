@@ -1,0 +1,197 @@
+body {
+  background: linear-gradient(135deg, #4a00e0, #8e2de2);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: #fff;
+  text-align: center;
+}
+
+#scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+#scoreboard div {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+#difficulty {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#difficulty label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 1em;
+  user-select: none;
+}
+
+#difficulty input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#difficulty input[type="radio"] + span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 14px;
+  width: 14px;
+  background-color: #eee;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+#difficulty input[type="radio"]:checked + span {
+  background-color: #ff6a00;
+}
+
+#difficulty input[type="radio"] + span:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+#difficulty input[type="radio"]:checked + span:after {
+  display: block;
+}
+
+#difficulty input[type="radio"] + span:after {
+  top: 4px;
+  left: 3px;
+  width: 6.5px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+#reset {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff6a00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  margin: 35px 0;
+  transition: background-color 0.3s;
+}
+
+#reset:hover {
+  background-color: #ff4500;
+}
+
+#game {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.cell {
+  background-color: #282828;
+  border-radius: 10px;
+  font-size: 48px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.cell:hover {
+  background-color: #444;
+  transform: scale(1.1);
+}
+
+.cell:active {
+  background-color: #666;
+  transform: scale(1);
+}
+
+#line {
+  position: absolute;
+  height: 4px; 
+  background-color: red;
+  width: 0;
+  transform-origin: 0 0;
+  transition: transform 0.5s ease;
+}
+
+body {
+  position: relative;
+}
+.overlay {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: #282828ae;
+  z-index: 500;
+}
+.popup {
+  position: absolute;
+  width: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 260px;
+  z-index: 10000;
+  background: #4caf50;
+  color: white;
+
+  border-radius: 10px;
+  padding: 30px 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: slideDown 0.5s forwards;
+}
+
+.popup h1.title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.popup p.msg {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.popup button {
+  background-color: #8e2de2;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.popup button:hover {
+  background-color: #a64bf4;
+}
+
+@keyframes slideDown {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 200px;
+  }
+}

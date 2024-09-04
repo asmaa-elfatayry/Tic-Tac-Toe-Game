@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="shortcut icon"
+      href="../icon/tic-tac-toe.png"
+      type="image/x-icon"
+    />
+    <title>Tic-Tac-Toe</title>
+  </head>
+  <body>
+    <div class="overlay">
+      <div class="popup">
+        <h1 class="title"></h1>
+        <p class="msg"></p>
+        <button id="close">OK</button>
+      </div>
+    </div>
+    <div>
+      <div id="scoreboard">
+        <div>
+          Player X (<span id="player-name">You</span>):
+          <span id="score-x">0</span>
+        </div>
+        <div>Player O (PC): <span id="score-o">0</span></div>
+      </div>
+
+      <!-- Difficulty Selection -->
+      <div id="difficulty">
+        <label>
+          <input type="radio" name="difficulty" value="medium" checked />
+          <span></span> Medium
+        </label>
+        <label>
+          <input type="radio" name="difficulty" value="hard" />
+          <span></span> Hard
+        </label>
+      </div>
+
+      <div id="game">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+        <div id="line"></div>
+      </div>
+      <button id="reset">Reset Game</button>
+    </div>
+
+    <script src="../scripts/game.js"></script>
+  </body>
+</html>
