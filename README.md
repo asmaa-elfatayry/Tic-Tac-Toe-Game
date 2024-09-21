@@ -1,7 +1,7 @@
 # Tic-Tac-Toe Game with AI
 
 This is a simple Tic-Tac-Toe game.
-
+[Play](https://asmaa-elfatayry.github.io/Tic-Tac-Toe-Game/index.html)
 ## Features
 
 - Player vs PC
