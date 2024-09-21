@@ -22,8 +22,8 @@ p {
 #name {
   padding: 10px;
   font-size: 1.2em;
-  width: 80%;
-  max-width: 300px;
+  width: 70%;
+  min-width: 350px;
   margin-top: 20px;
   border: 2px solid #ff6a00;
   border-radius: 5px;
@@ -48,4 +48,38 @@ a:hover {
 
 .container {
   margin-top: 100px;
+}
+
+.typewriter {
+  font-size: 2.5rem;
+  color: #fff;
+  border-right: 2px solid #45a049;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 8s steps(30, end) infinite,
+    blink-caret 0.75s step-end infinite;
+  animation-delay: 1s;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  80% {
+    width: 100%;
+  } /* Complete the typing */
+  100% {
+    width: 100%;
+  } /* Keep the full text visible before the next cycle */
+}
+
+/* Keyframes for blinking cursor */
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
+  } /* Makes the caret blink */
+  100% {
+    border-color: black;
+  }
 }

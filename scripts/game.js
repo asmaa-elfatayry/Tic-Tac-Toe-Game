@@ -1,4 +1,3 @@
-// Constants
 const winningMatrix = [
   [0, 1, 2], // top row
   [3, 4, 5], // middle row
@@ -14,12 +13,10 @@ const playerNameElement = document.querySelector("#player-name");
 const savedName = localStorage.getItem("CurrentPlayerTicTacName");
 if (savedName) playerNameElement.textContent = savedName;
 
-
 let userPlayer = "X";
 let aiPlayer = "O";
 let gameState = ["", "", "", "", "", "", "", "", ""];
-let difficulty = "medium"; 
-
+let difficulty = "easy";
 
 const resetButton = document.querySelector("#reset");
 const scoreXElement = document.querySelector("#score-x");
@@ -29,10 +26,10 @@ let scoreX = 0;
 let scoreO = 0;
 
 const handleCellClick = (e) => {
-  const cell = e.target;
+  const cell = e.target; //-> clicked cell
   const index = cell.getAttribute("data-index");
 
-
+  // Prevent the player from clicking if the cell is already taken or the game is end
   if (
     gameState[index] !== "" ||
     checkWin(gameState, userPlayer) ||
@@ -40,7 +37,6 @@ const handleCellClick = (e) => {
   ) {
     return;
   }
-
 
   gameState[index] = userPlayer;
   cell.textContent = userPlayer;
@@ -62,8 +58,7 @@ const handleCellClick = (e) => {
     return;
   }
 
-
-  aiMove();
+  pcMove();
 };
 
 function checkWin(board, player) {
@@ -96,10 +91,10 @@ function drawWinningLine(board, player) {
     const startY = firstRect.top - gameRect.top + firstRect.height / 2;
     const endX = lastRect.left - gameRect.left + lastRect.width / 2;
     const endY = lastRect.top - gameRect.top + lastRect.height / 2;
-
+    // The start and end coordinates for the line are calculated by taking the center of the first and last winning cells.
+    // The coordinates are adjusted to account for the position of the game board in the viewport.
     const length = Math.hypot(endX - startX, endY - startY);
     const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
-
 
     line.style.width = `${length}px`;
     line.style.transformOrigin = "0 0";
@@ -107,7 +102,7 @@ function drawWinningLine(board, player) {
   }
 }
 
-function aiMove() {
+function pcMove() {
   if (
     checkWin(gameState, userPlayer) ||
     gameState.every((cell) => cell !== "")
@@ -115,13 +110,12 @@ function aiMove() {
     return;
   }
 
-  if (difficulty === "medium") {
-    mediumMove();
+  if (difficulty === "easy") {
+    easyMove();
   } else {
     hardMove();
   }
 
-  
   if (checkWin(gameState, aiPlayer)) {
     // alert(`Player ${} wins!`);
 
@@ -137,9 +131,8 @@ function aiMove() {
     popup("It's a Tie! 🫣", " Nobody Wins!! ");
   }
 }
-
-function mediumMove() {
-
+// selects a random empty cell from the game board for its move
+function easyMove() {
   const emptyIndexes = gameState
     .map((val, idx) => (val === "" ? idx : null))
     .filter((val) => val !== null);
@@ -148,9 +141,12 @@ function mediumMove() {
   gameState[randomIndex] = aiPlayer;
   document.querySelector(`[data-index="${randomIndex}"]`).textContent =
     aiPlayer;
-  console.log(`AI (Medium) random move to cell ${randomIndex}`);
+  console.log(`AI (easy) random move to cell ${randomIndex}`);
 }
 
+// A score of 1 is assigned if the pc player wins.
+// A score of -1 is assigned if the user wins.
+// A score of 0 is assigned for a tie.
 function minimax(board, depth, isMaximizing, aiPlayer, opponent) {
   const scores = {
     [aiPlayer]: 1,
@@ -166,11 +162,11 @@ function minimax(board, depth, isMaximizing, aiPlayer, opponent) {
   if (winner) {
     return scores[winner];
   }
-
+  // tie case
   if (board.every((cell) => cell !== "")) {
     return scores.tie;
   }
-
+  //Recursive Cases:
   if (isMaximizing) {
     let bestScore = -Infinity;
     for (let i = 0; i < board.length; i++) {
@@ -195,10 +191,17 @@ function minimax(board, depth, isMaximizing, aiPlayer, opponent) {
     return bestScore;
   }
 }
+// to understand the algorithm:-->
+// Maximizing Player (PC): If it’s the AI’s turn, it tries to maximize the score.
 
+// It iterates over all possible moves.
+// For each empty cell, it simulates the move, calls minimax recursively for the opponent’s turn, and updates the best score.
+// Minimizing Player (Opponent): If it’s the opponent’s turn, it tries to minimize the score.
+
+// The logic is similar, but here it looks for the minimum score, indicating the opponent is trying to win.
 function hardMove() {
   const opponent = userPlayer;
-  let bestScore = -Infinity;
+  let bestScore = -Infinity; // initialized to negative infinity to ensure any score from minimax will be higher initially.
   let move;
 
   for (let i = 0; i < gameState.length; i++) {

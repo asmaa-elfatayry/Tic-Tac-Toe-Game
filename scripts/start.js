@@ -4,13 +4,13 @@ const startGame = () => {
 
   if (name && name !== savedName) {
     localStorage.setItem("CurrentPlayerTicTacName", name);
-  } else if (!name && !savedName) {
+  } else if ((!name && !savedName) || name == "") {
     localStorage.setItem("CurrentPlayerTicTacName", "You");
   }
 
-  document.getElementById("welcome-message").textContent = `Welcome, ${
-    name || "You"
-  }! Ready to play?`;
+  // document.getElementById("welcome-message").textContent = `Welcome, ${
+  //   name || "You"
+  // }! Ready to play?`;
 };
 
 window.onload = () => {
