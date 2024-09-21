@@ -5,15 +5,18 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
+  width: 90%;
+  margin: auto;
   color: #fff;
   text-align: center;
+  padding: 0 15px;
 }
 
 h1 {
   color: #fff;
   font-size: 2.5em;
 }
+
 p {
   color: #343336;
   font-size: 1.5em;
@@ -68,18 +71,67 @@ a:hover {
   }
   80% {
     width: 100%;
-  } /* Complete the typing */
+  }
   100% {
     width: 100%;
-  } /* Keep the full text visible before the next cycle */
+  }
 }
 
-/* Keyframes for blinking cursor */
 @keyframes blink-caret {
   50% {
     border-color: transparent;
-  } /* Makes the caret blink */
+  }
   100% {
     border-color: black;
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    font-size: 1.2em;
+  }
+
+  #name {
+    font-size: 1em;
+    width: 90%;
+  }
+
+  a {
+    font-size: 1em;
+    padding: 8px 16px;
+  }
+
+  .typewriter {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  #name {
+    width: 240px;
+    min-width: 270px;
+    font-size: 0.9em;
+  }
+
+  a {
+    font-size: 0.9em;
+    padding: 6px 12px;
+  }
+
+  .typewriter {
+    font-size: 1.5rem;
   }
 }
